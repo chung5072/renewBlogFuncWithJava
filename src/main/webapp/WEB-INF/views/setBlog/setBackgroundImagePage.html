@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>배경 이미지 선택</title>
+    <script type="text/javascript" th:src="@{/resources/js/setBlog/getImageSrc.js}" charset="UTF-8"></script>
+</head>
+<body>
+    <div th:each="backgroundImage: ${backgroundImages}" style="display: inline-block;">
+        <img th:attr="onclick=|getImageSrc('${backgroundImage.getKey()}')|" th:src="*{'data:image/jpg;base64,'+ backgroundImage.getValue()}" alt="#" style="max-width: 200px;"/>
+    </div>
+    <hr>
+    <form th:action="@{/setBlog/getSelectedImageSrc}" method="post">
+        <!-- <label for="inputImageSrc">선택한 이미지 번호</label> -->
+        <input id="inputImageSrc" name="inputImageSrc" type="text"/>
+        <button type="submit" value="이미지 선택"/>
+        <button type="reset" value="선택 취소"/>
+    </form>
+</body>
+</html>

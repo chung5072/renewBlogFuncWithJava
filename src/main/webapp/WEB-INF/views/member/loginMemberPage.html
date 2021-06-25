@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>로그인 페이지</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bulma.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bulma.css.map}" />
+</head>
+<body>
+    <div id="loginPage">
+        <form th:action="@{/member/loginMember}" th:object="${member}" th:method="post">
+            <article class="panel">
+                <p class="panel-heading">
+                    로그인
+                </p>
+                <div class="panel-tabs">
+                    <a class="is-active">로그인</a>
+                    <a id="changeJoinPage">회원 가입</a>
+                </div>
+                <div class="panel-block">
+                    <p>아이디</p> <br/>
+                    <input class="input is-medium" type="text" id="memberID" name="loginMemberID" placeholder="아이디" >
+                </div>
+                <div class="panel-block">
+                    <p>비밀번호</p> <br/>
+                    <input class="input is-medium" type="password" id="memberPW" name="loginMemberPW" placeholder="********">
+                </div>
+                <div class="panel-block">
+                    <div class="buttons">
+                        <button class="button is-success is-light" type="submit">로그인</button>
+                    </div>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <div class="buttons">
+                        <button class="button is-danger is-light" type="reset">입력 초기화</button>
+                    </div>
+                </div>
+                <div class="panel-block">
+                    <div class="buttons">
+                        <button class="button">
+                            <a th:href="@{/index}">
+                                돌아가기
+                            </a>
+                        </button>
+                    </div>
+                </div>
+            </article>
+        </form>
+    </div>
+    <div id="joinPage">
+        <form th:action="@{/member/joinMember}" th:object="${member}" th:method="post">
+            <article class="panel">
+                <p class="panel-heading">
+                    회원 가입
+                </p>
+                <div class="panel-tabs">
+                    <a id="changeLoginPage">로그인</a>
+                    <a class="is-active">회원 가입</a>
+                </div>
+                <div class="panel-block">
+                    <p>아이디</p> <br/>
+                    <input class="input is-medium" type="text" id="memberID" name="joinMemberID" placeholder="아이디">
+                </div>
+                <div class="panel-block">
+                    <p>비밀번호</p> <br/>
+                    <input class="input is-medium" type="password" id="memberPW" name="joinMemberPW" placeholder="********">
+                </div>
+                <div class="panel-block">
+                    <div>
+                        <p>비밀번호 재입력</p> <br/>
+                        <input class="input is-medium" id="pwCheck" type="password" placeholder="********">
+                    </div>
+                    <div>
+                        <button class="button" type="button" id="pwCheckButton">
+                            비밀번호 확인
+                        </button>
+                    </div>
+                </div>
+                <div class="panel-block">
+                    <p>회원 소개 글</p> <br/>
+                    <textarea class="textarea is-medium" id="memberINFO" name="memberINFO" placeholder="자신을 소개해주세요"></textarea>
+                </div>
+                <div class="panel-block">
+                    <div class="buttons">
+                        <button class="button is-success is-light" id="joinMemberButton" type="submit">회원가입</button>
+                    </div>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <div class="buttons">
+                        <button class="button is-danger is-light" type="reset">입력 초기화</button>
+                    </div>
+                </div>
+                <div class="panel-block">
+                    <div class="buttons">
+                        <button class="button">
+                            <a th:href="@{/index}">
+                                돌아가기
+                            </a>
+                        </button>
+                    </div>
+                </div>
+            </article>
+        </form>
+    </div>
+    <script type="text/javascript" th:src="@{/js/member/loginPage.js}" charset="UTF-8"></script>
+</body>
+</html>

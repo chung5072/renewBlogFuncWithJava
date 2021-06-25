@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>넣기 테스트</title>
+</head>
+<body>
+    <form th:action="@{/test/input}" th:object="${testData}" th:method="post">
+        <table border="1" >
+            <tr>
+                <td>
+                    <input type="text" id="index" name="index"/>
+                </td>
+                <td>
+                    <input type="text" id="value" name="value"/>
+                </td>
+                <td>
+                    <button type="submit">등록</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>

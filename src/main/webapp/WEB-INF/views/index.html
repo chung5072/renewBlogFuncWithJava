@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>리뉴얼된 블로그</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bulma.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bulma.css.map}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/index/index.css}" />
+</head>
+<body onload="printClock()">
+    <!-- 배경화면 이미지 -->
+    <script type="text/javascript" th:inline="javascript" charset="UTF-8">
+        /*<![CDATA[*/
+        var result = /*[[ ${backgroundImage} ]]*/'';
+        /*]]*/
+        window.onload = function() {
+            var img = "url('data:image/*;base64, "+result+"')"
+            document.body.style.backgroundImage = img;
+        }
+    </script>
+    <!-- 블로그 내용 -->
+    <section class="hero is-fullheight">
+        <div class="tile is-ancestor">
+            <div class="tile is-parent">
+                <article class="tile is-child box notification is-warning">
+                    로그인 영역
+                    <div class="card">
+                        <footer class="card-footer">
+                            <a href="#" class="card-footer-item">
+                                회원 정보
+                            </a>
+                            <a href="#" class="card-footer-item">
+                                블로그 소개
+                            </a>
+                        </footer>
+                        <header class="card-header">
+                            <p class="card-header-title">
+                                회원 정보
+                            </p>
+                        </header>
+                        <div class="card-content">
+                            <div class="content">
+                                <div th:if="${session.isEmpty()}">
+                                    <a th:href="@{/member/loginMemberPage}">로그인 페이지</a>
+                                </div>
+                                <div th:unless="${session.isEmpty()}">
+                                    <p>
+                                        아이디: <span th:text="${session.loginedMember.getMemberID()}"></span>
+                                    </p>
+                                    <br>
+                                    <p>
+                                        자기 소개: <span th:text="${session.loginedMember.getMemberINFO()}"></span>
+                                    </p>
+                                    <br>
+                                    <button class="button">
+                                        <a th:href="@{/member/logoutMember}">
+                                            로그 아웃
+                                        </a>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </article>
+            </div>
+            <div class="tile">
+                <div class="tile is-parent is-vertical">
+                    <article class="tile is-child box notification is-warning">
+                        검색 영역
+                    </article>
+                    <article class="tile is-child box notification is-warning">
+                        글 목록 영역
+                    </article>
+                </div>
+            </div>
+            <div class="tile is-parent">
+                <article class="tile is-child box notification is-warning">
+                    시계 영역
+                    <div style="text-align:center;" id="clock"></div>
+                </article>
+            </div>
+        </div>
+        <div class="tile is-ancestor">
+            <div class="tile is-parent">
+                <article class="tile is-child box notification is-warning">
+                    카테고리 영역
+                </article>
+            </div>
+            <div class="tile">
+                <div class="tile is-parent is-vertical">
+                    <article class="tile is-child box notification is-warning">
+                        글 내용 영역
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        글 번호
+                                    </th>
+                                    <th>
+                                        글 내용
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="testData: ${testDatas}">
+                                    <td class="text" th:text="${testData.getIndex()}"></td>
+                                    <td class="text" th:text="${testData.getValue()}"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </article>
+                    <article class="tile is-child box notification is-warning">
+                        댓글 영역  
+                        <a class="text" th:href="@{/test/inputPage}">넣기 테스트</a> 
+                    </article>
+                </div>
+            </div>
+        </div>
+        <footer class="footer">
+            설정 영역
+            <a class="text" th:href="@{/setBlog/uploadBackgroundImagePage}">배경화면 이미지 넣기</a>
+        </footer>
+    </section>
+    <script type="text/javascript" th:src="@{/js/index/clock.js}" charset="UTF-8"></script>
+</body>
+</html>

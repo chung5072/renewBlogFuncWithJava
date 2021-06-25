@@ -1,0 +1,8 @@
+@charset "utf-8";
+
+#blog {
+    position: absolute;
+    top: 20%;
+    z-index: 3;
+    height: max-content;
+}
